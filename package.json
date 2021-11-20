@@ -1,0 +1,34 @@
+{
+  "name": "api-datain",
+  "version": "1.0.0",
+  "description": "API for Data.in",
+  "main": "index.js",
+  "author": "Dudi Iskandar",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "mocha",
+    "clean": "rm release build -rf",
+    "start": "nodemon --exec node src/index.js",
+    "pre-build": "npm run clean && mkdir release && cp README.md package.json .env-dev release/",
+    "build": "npm run pre-build && minify src --out-dir build && mv build release && echo Successfully build App 😎!"
+  },
+  "dependencies": {
+    "babel-minify": "^0.5.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fastest-validator": "^1.12.0",
+    "head": "^1.0.0",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15"
+  }
+}
