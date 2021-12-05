@@ -45,4 +45,36 @@ app.post('/addTransaction', (req, res) => {
         }
     )
 });
-// end insert post dari form add transactions
+// end insert form post add transactions
+
+// menampilkan data transaction dari database
+app.get('/getTransaction', (req, res) => {
+    let sql = "SELECT * FROM data_collections";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('product_view', {
+            results: results
+        });
+    });
+});
+// end untuk menampilkan data
+
+// untuk delete data transactions
+app.post('/deleteTransaction', (req, res) => {
+        let sql = "DELETE FROM data_collections WHERE product_id=" + req.body.product_id + "";
+        let query = conn.query(sql, (err, results) => {
+            if (err) throw err;
+            res.redirect('/');
+        });
+    })
+    // end untuk delet data
+
+// untuk update data transactions
+app.post('/update', (req, res) => {
+    let sql = "UPDATE data_collections SET item_name='" + req.body.item_name + "', weight='" + req.weight + "' WHERE id=" + req.body.id;
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.redirect('/');
+    });
+});
+//  end untuk update data
